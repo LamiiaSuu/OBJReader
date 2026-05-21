@@ -23,13 +23,23 @@ def read_obj(file_path):
             
             elif prefix == 'f':
                 face = []
+                face_vertices = []
+
                 for vertex in parts[1:]:
                     values = vertex.split("/")
                     v_idx = int(values[0]) if values[0] else None
                     vt_idx = int(values[1]) if len(values) > 1 and values[1] else None
                     vn_idx = int(values[2]) if len(values) > 2 and values[2] else None
                     face.append((v_idx, vt_idx, vn_idx))
+                    face_vertices.append(v_idx)
                 faces.append(face)
+
+                n = len(face_vertices)
+
+                for i in range(n):
+                    a = face_vertices[i]
+                    b = face_vertices[(i + 1) % n]
+                    edges.add(tuple(sorted((a, b))))
 
 
             elif prefix == "vt":
