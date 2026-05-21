@@ -1,3 +1,14 @@
+import math
+
+def sub(a, b): return (a[0]-b[0], a[1]-b[1], a[2]-b[2])
+def cross(a, b): return (a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0])
+
+def norm(v):
+    l = math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
+    return (0.0, 0.0, 0.0) if l == 0 else (v[0]/l, v[1]/l, v[2]/l)
+
+def add(a, b): return (a[0]+b[0], a[1]+b[1], a[2]+b[2])
+
 def read_obj(file_path):
     vertices = 0
     maxVert = 0
@@ -60,7 +71,7 @@ def read_obj(file_path):
 
 
 if __name__ == "__main__":
-    obj_data = read_obj("bunny.obj")
+    obj_data = read_obj("cow.obj")
 
     print(f"has Texture Coordiantes:    {obj_data['textureCoordiantes']}")
     print(f"has Normals:    {obj_data['normals']}")
